@@ -1,0 +1,8 @@
+{
+    "i am a teapot": "i am a teapot",
+    "invalid or expired token": "invalid or expired token",
+    "invalid user or password": "invalid user or password",
+    "permission denied": "permission denied",
+    "entity not found": "entity not found",
+    "unprocessable input": "unprocessable input"
+}

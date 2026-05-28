@@ -1,0 +1,8 @@
+{
+    "i am a teapot": "من یک قوری هستم",
+    "invalid or expired token": "توکن نادرست و یا تاریخ گذشته است",
+    "invalid user or password": "کاربری یا رمز عبور صحیح نمی باشد",
+    "permission denied": "خطای سطح دسترسی",
+    "entity not found": "یافت نشد",
+    "unprocessable input": "ورودی قابل بررسی نمی باشد"
+}

@@ -1,0 +1,649 @@
+openapi: 3.1.1
+info:
+  title: Sample
+  description: API for Sample application
+  version: "1.0"
+  contact:
+    email: erfan.ehsany@outlook.com
+
+servers:
+  - url: http://127.0.0.1:8000
+  - url: http://localhost:8000
+
+tags:
+  - name: common
+    description: common web services
+
+security:
+  - BearerAuth: []
+
+paths:
+  # common services
+  /api/v1/common/teapot:
+    get:
+      summary: Returns a teapot message
+      description: Returns localized teapot text based on `lang` query parameter
+
+      tags:
+        - common
+
+      parameters:
+        - $ref: "#/components/parameters/LanguageHeader"
+        - $ref: "#/components/parameters/RequestIdHeader"
+
+      responses:
+        "200":
+          description: Successful response
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "i am a teapot"
+
+  # login services
+  /api/v1/user/login:
+    post:
+      summary: login service
+      description: Returns jwt for user login
+      security: []
+
+      tags:
+        - user
+
+      parameters:
+        - $ref: "#/components/parameters/LanguageHeader"
+        - $ref: "#/components/parameters/RequestIdHeader"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginInput"
+
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "400":
+          $ref: "#/components/schemas/400"
+        "401":
+          $ref: "#/components/schemas/401"
+        "403":
+          $ref: "#/components/schemas/403"
+        "404":
+          $ref: "#/components/schemas/404"
+        "422":
+          $ref: "#/components/schemas/422"
+
+  # user crud
+  /api/v1/user:
+    # list
+    get:
+      summary: get users
+      description: Returns users list
+      security: []
+
+      tags:
+        - user
+
+      parameters:
+        - $ref: "#/components/parameters/LanguageHeader"
+        - $ref: "#/components/parameters/RequestIdHeader"
+        - $ref: "#/components/parameters/LimitPaginationQuery"
+        - $ref: "#/components/parameters/OffsetPaginationQuery"
+        - $ref: "#/components/parameters/FilterPaginationQuery"
+
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsersPaginatedResponse"
+        "400":
+          $ref: "#/components/schemas/400"
+        "401":
+          $ref: "#/components/schemas/401"
+        "403":
+          $ref: "#/components/schemas/403"
+        "404":
+          $ref: "#/components/schemas/404"
+        "422":
+          $ref: "#/components/schemas/422"
+
+    # create
+    post:
+      summary: Create a new user
+      description: Create a new user with provided data
+      security: []
+      tags:
+        - user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        "201":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsersDetailCreateResponse"
+        "400":
+          $ref: "#/components/schemas/400"
+        "401":
+          $ref: "#/components/schemas/401"
+        "403":
+          $ref: "#/components/schemas/403"
+        "404":
+          $ref: "#/components/schemas/404"
+        "422":
+          $ref: "#/components/schemas/422"
+
+  /api/v1/user/{id}:
+    # detail
+    get:
+      summary: get user detail
+      description: Returns user detail
+      security: []
+
+      tags:
+        - user
+
+      parameters:
+        - $ref: "#/components/parameters/UrlDetail"
+        - $ref: "#/components/parameters/LanguageHeader"
+        - $ref: "#/components/parameters/RequestIdHeader"
+
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsersDetailResponse"
+        "400":
+          $ref: "#/components/schemas/400"
+        "401":
+          $ref: "#/components/schemas/401"
+        "403":
+          $ref: "#/components/schemas/403"
+        "404":
+          $ref: "#/components/schemas/404"
+        "422":
+          $ref: "#/components/schemas/422"
+
+    # update
+    put:
+      summary: Update an existing user
+      description: Update user data partially or fully
+      security: []
+      tags:
+        - user
+      parameters:
+        - $ref: "#/components/parameters/UrlDetail"
+        - $ref: "#/components/parameters/LanguageHeader"
+        - $ref: "#/components/parameters/RequestIdHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserRequest"
+      responses:
+        "204":
+          $ref: "#/components/schemas/UpdateResponse"
+        "400":
+          $ref: "#/components/schemas/400"
+        "401":
+          $ref: "#/components/schemas/401"
+        "403":
+          $ref: "#/components/schemas/403"
+        "404":
+          $ref: "#/components/schemas/404"
+        "422":
+          $ref: "#/components/schemas/422"
+
+    # delete
+    delete:
+      summary: Delete a user
+      description: Soft-delete a user by ID
+      security: []
+      tags:
+        - user
+      parameters:
+        - $ref: "#/components/parameters/UrlDetail"
+        - $ref: "#/components/parameters/LanguageHeader"
+        - $ref: "#/components/parameters/RequestIdHeader"
+      responses:
+        "204":
+          $ref: "#/components/schemas/DeleteResponse"
+        "400":
+          $ref: "#/components/schemas/400"
+        "401":
+          $ref: "#/components/schemas/401"
+        "403":
+          $ref: "#/components/schemas/403"
+        "404":
+          $ref: "#/components/schemas/404"
+        "422":
+          $ref: "#/components/schemas/422"
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    UrlDetail:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: uint64
+
+    LanguageHeader:
+      name: "Accept-Language"
+      in: header
+      description: "user selected language"
+      required: false
+      schema:
+        type: string
+        enum:
+          - en
+          - fa
+        example: fa
+
+    RequestIdHeader:
+      name: "X-Request-ID"
+      in: header
+      description: request reference
+      required: false
+      schema:
+        type: string
+
+    LimitPaginationQuery:
+      name: limit
+      in: query
+      description: Maximum number of results to return
+      required: false
+      schema:
+        type: integer
+        default: 20
+
+    OffsetPaginationQuery:
+      name: offset
+      in: query
+      description: Number of items to skip
+      required: false
+      schema:
+        type: integer
+        default: 0
+
+    FilterPaginationQuery:
+      name: filters
+      in: query
+      description: Filters in dynamic form
+      required: false
+      style: form
+      explode: false
+
+      schema:
+        type: array
+        items:
+          type: object
+          properties:
+            field:
+              type: string
+            operator:
+              type: string
+              enum: [eq, like, gt, gte, lt, lte]
+            value:
+              oneOf:
+                - type: string
+                - type: number
+                - type: boolean
+                - type: string
+                  format: date-time
+
+  schemas:
+    # standard response
+    StandardResponse:
+      type: object
+      properties:
+        result:
+          nullable: true
+        error:
+          nullable: true
+          type: string
+        success:
+          type: boolean
+        code:
+          type: integer
+          format: int32
+
+    # responses
+    UpdateResponse:
+      description: "Updated"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/StandardResponse"
+          example:
+            result: null
+            error: "No content"
+            success: false
+            code: 204
+
+    DeleteResponse:
+      description: "Deleted"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/StandardResponse"
+          example:
+            result: null
+            error: "No content"
+            success: false
+            code: 204
+
+    "400":
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/StandardResponse"
+          example:
+            result: null
+            error: "Bad request"
+            success: false
+            code: 400
+
+    "401":
+      description: "Unauthorized"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/StandardResponse"
+          example:
+            result: null
+            error: "invalid or expired token"
+            success: false
+            code: 401
+
+    "403":
+      description: "Forbidden"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/StandardResponse"
+          example:
+            result: null
+            error: "permission denied"
+            success: false
+            code: 403
+
+    "404":
+      description: "Not Found"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/StandardResponse"
+          example:
+            result: null
+            error: "entity not found"
+            success: false
+            code: 404
+
+    "422":
+      description: "Unprocessable input"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/StandardResponse"
+          example:
+            result: null
+            error: "unprocessable input"
+            success: false
+            code: 422
+
+    # USER LOGIN
+    LoginInput:
+      type: object
+      required:
+        - mobile
+        - password
+      properties:
+        mobile:
+          type: string
+          example: "09120000000"
+        password:
+          type: string
+          example: "secret"
+
+    LoginResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+        error:
+          type: string
+          nullable: true
+          example: null
+        result:
+          $ref: "#/components/schemas/LoginResult"
+        success:
+          type: boolean
+          example: true
+
+    LoginResult:
+      type: object
+      properties:
+        user_info:
+          $ref: "#/components/schemas/UserInfo"
+        permissions:
+          type: array
+          items:
+            type: string
+          example:
+            - "teapot"
+        token:
+          type: string
+          example: "some token..."
+        expires_at:
+          type: integer
+          format: int64
+          example: 1
+
+    # USER CRUD
+    UserInfo:
+      type: object
+      properties:
+        mobile:
+          type: string
+          example: "09120000000"
+        email:
+          type: string
+          format: email
+          example: "example.mail.com"
+        national_code:
+          type: string
+          nullable: true
+          example: null
+        birthdate:
+          type: string
+          format: date-time
+          nullable: true
+          example: null
+
+    Users:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 20
+        offset:
+          type: integer
+          example: 0
+        count:
+          type: integer
+          example: 153
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserInfo"
+
+    UsersPaginatedResponse:
+      type: object
+      properties:
+        result:
+          $ref: "#/components/schemas/Users"
+        error:
+          nullable: true
+          example: null
+        success:
+          type: boolean
+          example: true
+        code:
+          type: integer
+          example: 200
+
+    # user detail
+    UserDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: uint64
+          example: 1
+        mobile:
+          type: string
+          example: "09396168479"
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+        national_code:
+          type: string
+          nullable: true
+          example: "1234567890"
+        birthdate:
+          type: string
+          format: date-time
+          nullable: true
+          example: "1995-01-01T00:00:00Z"
+        created_at:
+          type: string
+          format: date-time
+          example: "2024-01-01T10:00:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          example: "2024-01-10T12:00:00Z"
+        deleted_at:
+          type: string
+          format: date-time
+          nullable: true
+          example: null
+        permissions:
+          type: array
+          items:
+            type: string
+
+    UsersDetailResponse:
+      type: object
+      properties:
+        result:
+          $ref: "#/components/schemas/UserDetail"
+        error:
+          nullable: true
+          example: null
+        success:
+          type: boolean
+          example: true
+        code:
+          type: integer
+          example: 200
+
+    UsersDetailCreateResponse:
+      type: object
+      properties:
+        result:
+          $ref: "#/components/schemas/UserDetail"
+        error:
+          nullable: true
+          example: null
+        success:
+          type: boolean
+          example: true
+        code:
+          type: integer
+          example: 200
+
+    CreateUserRequest:
+      type: object
+      required:
+        - mobile
+        - email
+        - password
+      properties:
+        mobile:
+          type: string
+          example: "09121234567"
+          description: User mobile number (required)
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+          description: User email (required)
+        password:
+          type: string
+          format: password
+          description: User password (required)
+        national_code:
+          type: string
+          nullable: true
+          example: "1234567890"
+          description: User national code (optional)
+        birthdate:
+          type: string
+          format: date-time
+          nullable: true
+          example: "1995-01-01T00:00:00Z"
+          description: User birthdate (optional)
+
+    UpdateUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          nullable: true
+          example: "user@example.com"
+          description: User email (optional)
+        password:
+          type: string
+          format: password
+          nullable: true
+          description: User password (optional)
+        national_code:
+          type: string
+          nullable: true
+          example: "1234567890"
+          description: User national code (optional)
+        birthdate:
+          type: string
+          format: date-time
+          nullable: true
+          example: "1995-01-01T00:00:00Z"
+          description: User birthdate (optional)

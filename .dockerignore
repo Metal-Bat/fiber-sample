@@ -1,0 +1,14 @@
+README.md
+CHANGELOG.md
+.envs/
+.vscode/
+logs/
+
+# Ignore any OS or editor specific files
+.DS_Store
+.git
+.gitignore
+.idea
+.vscode
+.mise.toml
+*.swp

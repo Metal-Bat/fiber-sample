@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+echo "---------------"
+pwd
+echo "---------------"
+ls -a
+echo "---------------"
+
+exec air -c .air.toml

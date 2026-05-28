@@ -1,0 +1,25 @@
+# General
+# ------------------------------------------------------------------------------
+SERVER=0.0.0.0
+PORT=8000
+LOGGER_PATH="./logs/backend.log"
+SECRET=SECRET
+APPLICATION="sample"
+APP_ENV=local
+ALLOWED_ORIGINS=http://localhost:8000,http://127.0.0.1:8000
+
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+
+# Postgres
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=postgres
+POSTGRES_PORT=5432
+
+# OTEL Url
+# ------------------------------------------------------------------------------
+OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=otel-collector:4317
