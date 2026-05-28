@@ -1,14 +1,93 @@
 [tools]
 go = "1.25.7"
+pre-commit = "4.6.0"
+golangci-lint = "2.12.2"
+gotestsum = "1.13.0"
+
+[tasks.fmt]
+description = "Format project"
+dir = "src"
+run = ["gofmt -w .", "go mod tidy"]
+
+[tasks.fix]
+description = "Auto fix lint issues"
+dir = "src"
+run = ["golangci-lint run --fix ./..."]
+
+[tasks.lint]
+description = "Run linters"
+dir = "src"
+run = ["golangci-lint run ./..."]
+
+[tasks.vet]
+description = "Run go vet"
+dir = "src"
+run = ["go vet ./..."]
 
 [tasks.build]
-description = "Build the project"
-run = "docker compose -f docker-compose.local.yml build"
+description = "Build project"
+dir = "src"
+run = ["go build ./..."]
 
-[tasks.up]
-description = "Start the project"
-run = "docker compose -f docker-compose.local.yml up --build"
+[tasks.test]
+description = "Run tests"
+dir = "src"
+run = ["gotestsum --format=testname -- -count=1 ./..."]
 
-[tasks.logs]
-description = "See the project logs"
-run = "docker compose -f docker-compose.local.yml logs"
+[tasks.test-race]
+description = "Run race tests"
+dir = "src"
+run = ["gotestsum --format=testname -- -race -count=1 ./..."]
+
+[tasks.coverage]
+description = "Generate coverage"
+dir = "src"
+run = [
+  "mkdir -p .coverage",
+  "gotestsum --format=testname --junitfile=.coverage/junit.xml -- -covermode=atomic -coverprofile=.coverage/coverage.out ./...",
+  "go tool cover -func=.coverage/coverage.out",
+]
+
+[tasks.coverage-html]
+description = "Open HTML coverage"
+depends = ["coverage"]
+dir = "src"
+run = ["go tool cover -html=.coverage/coverage.out -o .coverage/coverage.html"]
+
+[tasks.clean]
+description = "Clean caches"
+dir = "src"
+run = ["go clean -cache -testcache -modcache", "rm -rf .coverage"]
+
+[tasks.check]
+description = "Full checks"
+depends = ["fmt", "vet", "lint", "test"]
+
+[tasks.ci]
+description = "CI pipeline"
+depends = ["fmt", "vet", "lint", "test-race", "coverage"]
+
+[tasks.watch-test]
+description = "Watch tests"
+dir = "src"
+run = '''
+while inotifywait -e modify -r .; do
+  clear
+  gotestsum --format=testname -- -count=1 ./...
+done
+'''
+
+[tasks.deps]
+description = "Update dependencies"
+dir = "src"
+run = ["go get -u ./...", "go mod tidy"]
+
+[tasks.sec]
+description = "Security checks"
+dir = "src"
+run = ["govulncheck ./..."]
+
+[tasks.bench]
+description = "Run benchmarks"
+dir = "src"
+run = ["go test -bench=. ./..."]
