@@ -1,5 +1,5 @@
 [tools]
-go = "1.25.7"
+go = "1.25.11"
 pre-commit = "4.6.0"
 golangci-lint = "2.12.2"
 gotestsum = "1.13.0"
