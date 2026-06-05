@@ -18,8 +18,8 @@ const (
 )
 
 var AllPermissions = []string{
-    TEAPOT,
-    ADMIN,
+	TEAPOT,
+	ADMIN,
 }
 
 func getPermissions(c fiber.Ctx) ([]string, error) {

@@ -3,6 +3,8 @@ go = "1.25.11"
 pre-commit = "4.6.0"
 golangci-lint = "2.12.2"
 gotestsum = "1.13.0"
+node = "26.1.0"
+"npm:@redocly/cli" = "2.31.6"
 
 [tasks.fmt]
 description = "Format project"
@@ -14,6 +16,11 @@ description = "Auto fix lint issues"
 dir = "src"
 run = ["golangci-lint run --fix ./..."]
 
+[tasks.bundle-swagger]
+description = "Bundle swagger"
+run = "redocly bundle src/api/docs/openapi.yaml -o src/api/docs/swagger.yaml"
+
+
 [tasks.lint]
 description = "Run linters"
 dir = "src"
@@ -21,73 +28,44 @@ run = ["golangci-lint run ./..."]
 
 [tasks.vet]
 description = "Run go vet"
-dir = "src"
 run = ["go vet ./..."]
 
 [tasks.build]
 description = "Build project"
-dir = "src"
 run = ["go build ./..."]
 
 [tasks.test]
 description = "Run tests"
-dir = "src"
 run = ["gotestsum --format=testname -- -count=1 ./..."]
 
 [tasks.test-race]
 description = "Run race tests"
-dir = "src"
 run = ["gotestsum --format=testname -- -race -count=1 ./..."]
 
 [tasks.coverage]
-description = "Generate coverage"
-dir = "src"
+description = "Generate HTML coverage"
 run = [
   "mkdir -p .coverage",
   "gotestsum --format=testname --junitfile=.coverage/junit.xml -- -covermode=atomic -coverprofile=.coverage/coverage.out ./...",
-  "go tool cover -func=.coverage/coverage.out",
+  "go tool cover -html=.coverage/coverage.out -o .coverage/coverage.html",
 ]
-
-[tasks.coverage-html]
-description = "Open HTML coverage"
-depends = ["coverage"]
-dir = "src"
-run = ["go tool cover -html=.coverage/coverage.out -o .coverage/coverage.html"]
 
 [tasks.clean]
 description = "Clean caches"
-dir = "src"
 run = ["go clean -cache -testcache -modcache", "rm -rf .coverage"]
 
 [tasks.check]
-description = "Full checks"
+description = "Checks"
 depends = ["fmt", "vet", "lint", "test"]
 
-[tasks.ci]
-description = "CI pipeline"
+[tasks.complete-check]
+description = "Complete Checks"
 depends = ["fmt", "vet", "lint", "test-race", "coverage"]
-
-[tasks.watch-test]
-description = "Watch tests"
-dir = "src"
-run = '''
-while inotifywait -e modify -r .; do
-  clear
-  gotestsum --format=testname -- -count=1 ./...
-done
-'''
 
 [tasks.deps]
 description = "Update dependencies"
-dir = "src"
 run = ["go get -u ./...", "go mod tidy"]
-
-[tasks.sec]
-description = "Security checks"
-dir = "src"
-run = ["govulncheck ./..."]
 
 [tasks.bench]
 description = "Run benchmarks"
-dir = "src"
 run = ["go test -bench=. ./..."]

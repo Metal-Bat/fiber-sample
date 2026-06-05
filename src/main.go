@@ -16,7 +16,6 @@ import (
 	"github.com/gofiber/contrib/v3/swaggerui"
 	"github.com/gofiber/fiber/v3"
 
-	"github.com/gofiber/contrib/v3/i18n"
 	fiberLogger "github.com/gofiber/contrib/v3/zap"
 	"github.com/gofiber/fiber/v3/middleware/cors"
 	"github.com/gofiber/fiber/v3/middleware/recover"
@@ -48,7 +47,6 @@ func main() {
 	app.Use(fgprof.New())
 	app.Use(otel.Middleware())
 	app.Use(recover.New())
-	app.Use(i18n.New(initializers.TranslateConfig))
 	app.Use(cors.New(*initializers.CorsConfig))
 	app.Use(swaggerui.New(*initializers.SwaggerConfig))
 	app.Get("/api/v1/metrics", monitor.New())

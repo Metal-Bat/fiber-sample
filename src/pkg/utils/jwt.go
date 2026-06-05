@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"sample/src/initializers"
 	"os"
+	"sample/src/initializers"
 
 	"github.com/golang-jwt/jwt/v5"
 

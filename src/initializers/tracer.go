@@ -44,7 +44,7 @@ func InitTracer() *sdktrace.TracerProvider {
 		propagation.NewCompositeTextMapPropagator(
 			propagation.TraceContext{},
 			propagation.Baggage{},
-			),
-		)
+		),
+	)
 	return tp
 }

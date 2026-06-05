@@ -1,0 +1,50 @@
+StandardResponse:
+  type: object
+  properties:
+    result:
+      nullable: true
+
+    error:
+      type: string
+      nullable: true
+
+    success:
+      type: boolean
+
+    code:
+      type: integer
+
+BadRequest:
+  description: Bad Request
+  content:
+    application/json:
+      schema:
+        $ref: "#/StandardResponse"
+
+Unauthorized:
+  description: Unauthorized
+  content:
+    application/json:
+      schema:
+        $ref: "#/StandardResponse"
+
+Forbidden:
+  description: Forbidden
+  content:
+    application/json:
+      schema:
+        $ref: "#/StandardResponse"
+
+NotFound:
+  description: Not Found
+  content:
+    application/json:
+      schema:
+        $ref: "#/StandardResponse"
+
+ValidationError:
+  description: Validation Error
+  content:
+    application/json:
+      schema:
+        $ref: "#/StandardResponse"

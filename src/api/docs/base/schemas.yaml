@@ -1,0 +1,26 @@
+StandardResponse:
+  $ref: "./responses.yaml#/StandardResponse"
+
+UserInfo:
+  $ref: "../user/schemas.yaml#/UserInfo"
+
+UserDetail:
+  $ref: "../user/schemas.yaml#/UserDetail"
+
+Users:
+  $ref: "../user/schemas.yaml#/Users"
+
+LoginResult:
+  $ref: "../user/schemas.yaml#/LoginResult"
+
+LoginResponse:
+  $ref: "../user/schemas.yaml#/LoginResponse"
+
+UsersPaginatedResponse:
+  $ref: "../user/schemas.yaml#/UsersPaginatedResponse"
+
+UsersDetailResponse:
+  $ref: "../user/schemas.yaml#/UsersDetailResponse"
+
+UsersDetailCreateResponse:
+  $ref: "../user/schemas.yaml#/UsersDetailCreateResponse"
