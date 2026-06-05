@@ -2,9 +2,9 @@ package utils
 
 import (
 	"encoding/json"
+	"fmt"
 	"sample/src/initializers"
 	"sample/src/pkg/dto"
-	"fmt"
 
 	"github.com/gofiber/fiber/v3"
 	"gorm.io/gorm"

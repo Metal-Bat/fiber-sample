@@ -1,0 +1,8 @@
+LoginInput:
+  type: object
+
+CreateUserRequest:
+  type: object
+
+UpdateUserRequest:
+  type: object

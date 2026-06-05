@@ -1,9 +1,9 @@
 package middleware
 
 import (
+	"os"
 	"sample/src/api/presenter"
 	"sample/src/initializers"
-	"os"
 
 	jwtMiddleware "github.com/gofiber/contrib/v3/jwt"
 	"github.com/gofiber/fiber/v3"

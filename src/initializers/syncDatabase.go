@@ -1,8 +1,8 @@
 package initializers
 
 import (
-	"sample/src/pkg/entities"
 	"log"
+	"sample/src/pkg/entities"
 )
 
 func SyncDatabase() {

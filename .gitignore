@@ -48,3 +48,4 @@ src/tmp/main
 
 # Built Visual Studio Code Extensions
 *.vsix
+.coverage/

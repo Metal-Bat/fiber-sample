@@ -1,0 +1,230 @@
+LoginInput:
+  type: object
+  required:
+    - mobile
+    - password
+  properties:
+    mobile:
+      type: string
+      example: "09120000000"
+    password:
+      type: string
+      example: "secret"
+
+LoginResponse:
+  type: object
+  properties:
+    code:
+      type: integer
+      example: 200
+    error:
+      type: string
+      nullable: true
+      example: null
+    result:
+      $ref: "#/components/schemas/LoginResult"
+    success:
+      type: boolean
+      example: true
+
+LoginResult:
+  type: object
+  properties:
+    user_info:
+      $ref: "#/components/schemas/UserInfo"
+    permissions:
+      type: array
+      items:
+        type: string
+      example:
+        - "teapot"
+    token:
+      type: string
+      example: "some token..."
+    expires_at:
+      type: integer
+      format: int64
+      example: 1
+
+# USER CRUD
+UserInfo:
+  type: object
+  properties:
+    mobile:
+      type: string
+      example: "09120000000"
+    email:
+      type: string
+      format: email
+      example: "example.mail.com"
+    national_code:
+      type: string
+      nullable: true
+      example: null
+    birthdate:
+      type: string
+      format: date-time
+      nullable: true
+      example: null
+
+Users:
+  type: object
+  properties:
+    limit:
+      type: integer
+      example: 20
+    offset:
+      type: integer
+      example: 0
+    count:
+      type: integer
+      example: 153
+    items:
+      type: array
+      items:
+        $ref: "#/components/schemas/UserInfo"
+
+UsersPaginatedResponse:
+  type: object
+  properties:
+    result:
+      $ref: "#/components/schemas/Users"
+    error:
+      nullable: true
+      example: null
+    success:
+      type: boolean
+      example: true
+    code:
+      type: integer
+      example: 200
+
+# user detail
+UserDetail:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: uint64
+      example: 1
+    mobile:
+      type: string
+      example: "09396168479"
+    email:
+      type: string
+      format: email
+      example: "user@example.com"
+    national_code:
+      type: string
+      nullable: true
+      example: "1234567890"
+    birthdate:
+      type: string
+      format: date-time
+      nullable: true
+      example: "1995-01-01T00:00:00Z"
+    created_at:
+      type: string
+      format: date-time
+      example: "2024-01-01T10:00:00Z"
+    updated_at:
+      type: string
+      format: date-time
+      example: "2024-01-10T12:00:00Z"
+    deleted_at:
+      type: string
+      format: date-time
+      nullable: true
+      example: null
+    permissions:
+      type: array
+      items:
+        type: string
+
+UsersDetailResponse:
+  type: object
+  properties:
+    result:
+      $ref: "#/components/schemas/UserDetail"
+    error:
+      nullable: true
+      example: null
+    success:
+      type: boolean
+      example: true
+    code:
+      type: integer
+      example: 200
+
+UsersDetailCreateResponse:
+  type: object
+  properties:
+    result:
+      $ref: "#/components/schemas/UserDetail"
+    error:
+      nullable: true
+      example: null
+    success:
+      type: boolean
+      example: true
+    code:
+      type: integer
+      example: 200
+
+CreateUserRequest:
+  type: object
+  required:
+    - mobile
+    - email
+    - password
+  properties:
+    mobile:
+      type: string
+      example: "09121234567"
+      description: User mobile number (required)
+    email:
+      type: string
+      format: email
+      example: "user@example.com"
+      description: User email (required)
+    password:
+      type: string
+      format: password
+      description: User password (required)
+    national_code:
+      type: string
+      nullable: true
+      example: "1234567890"
+      description: User national code (optional)
+    birthdate:
+      type: string
+      format: date-time
+      nullable: true
+      example: "1995-01-01T00:00:00Z"
+      description: User birthdate (optional)
+
+UpdateUserRequest:
+  type: object
+  properties:
+    email:
+      type: string
+      format: email
+      nullable: true
+      example: "user@example.com"
+      description: User email (optional)
+    password:
+      type: string
+      format: password
+      nullable: true
+      description: User password (optional)
+    national_code:
+      type: string
+      nullable: true
+      example: "1234567890"
+      description: User national code (optional)
+    birthdate:
+      type: string
+      format: date-time
+      nullable: true
+      example: "1995-01-01T00:00:00Z"
+      description: User birthdate (optional)
