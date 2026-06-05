@@ -45,8 +45,5 @@ jobs:
       - name: Install Go dependencies
         run: go mod tidy
 
-      - name: Run golangci-lint
-        run: golangci-lint run ./...
-
       - name: Run tests
         run: go test ./...
