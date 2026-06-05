@@ -11,9 +11,11 @@
     "dragonflydb",
     "fgprof",
     "gofiber",
+    "gofmt",
     "golangci",
     "gomod",
     "gorm",
+    "gotestsum",
     "natefinch",
     "NOPASSWD",
     "otelfiber",
@@ -28,6 +30,7 @@
     "semconv",
     "sslmode",
     "stdouttrace",
+    "stretchr",
     "swaggerui",
     "Syncer"
   ]
