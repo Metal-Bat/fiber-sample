@@ -1,5 +1,5 @@
-github.com/BurntSushi/toml v1.4.0 h1:kuoIxZQy2WRRk1pttg9asf+WVv6tWQuBNVmK8+nqPr0=
-github.com/BurntSushi/toml v1.4.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
+github.com/BurntSushi/toml v1.6.0 h1:dRaEfpa2VI55EwlIW72hMRHdWouJeRF7TPYhI+AUQjk=
+github.com/BurntSushi/toml v1.6.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
 github.com/ClickHouse/ch-go v0.61.5 h1:zwR8QbYI0tsMiEcze/uIMK+Tz1D3XZXLdNrlaOpeEI4=
 github.com/ClickHouse/ch-go v0.61.5/go.mod h1:s1LJW/F/LcFs5HJnuogFMta50kKDO0lf9zzfrbl0RQg=
 github.com/ClickHouse/clickhouse-go/v2 v2.30.0 h1:AG4D/hW39qa58+JHQIFOSnxyL46H6h2lrmGGk17dhFo=
@@ -57,8 +57,8 @@ github.com/gobwas/pool v0.2.1/go.mod h1:q8bcK0KcYlCgd9e7WYLm9LpyS+YeLd8JVDW6Wezm
 github.com/gobwas/ws v1.2.1/go.mod h1:hRKAFb8wOxFROYNsT1bqfWnhX+b5MFeJM9r2ZSwg/KY=
 github.com/gofiber/contrib/v3/fgprof v1.0.6 h1:aI8GSQOiKwlsw1/wKaW1XU4294kbpEnShi1QW8IKmqQ=
 github.com/gofiber/contrib/v3/fgprof v1.0.6/go.mod h1:5hvvL1Bjq2qNcfS7dfeiZpau+1ubsJn/fXRoIJ6h2Q0=
-github.com/gofiber/contrib/v3/i18n v1.0.0-rc.1 h1:1U/UqwEXMZRx+2vYdUZvrWQcSKI25WpH7GpHjMu86Q0=
-github.com/gofiber/contrib/v3/i18n v1.0.0-rc.1/go.mod h1:vzKcRiMrngFnt28gaNYKWD2FNa+GKVNzwypk/SBIOSs=
+github.com/gofiber/contrib/v3/i18n v1.0.6 h1:8M1NIMqGKVRvg05kmtCBKh6ZP/tCrjgGHIdfvJXW4yw=
+github.com/gofiber/contrib/v3/i18n v1.0.6/go.mod h1:J+OVZf7dUlaV1o5Gn2ZgBMwekehMxB94cL/3yXLE894=
 github.com/gofiber/contrib/v3/jwt v1.0.0-rc.1 h1:O1og5GyFmmbsi/VPjBT4A4A6OiEe2CT0WFGsiKXvTwI=
 github.com/gofiber/contrib/v3/jwt v1.0.0-rc.1/go.mod h1:/9zLCFyb78MfS+GLXPofhfbYz3OU22xGMEJy8tkRKn4=
 github.com/gofiber/contrib/v3/monitor v1.0.6 h1:uJ8h6vu6wURQD2USa7llBz5XPNNk+3MpQ9sni6ub5ds=
@@ -132,8 +132,8 @@ github.com/mattn/go-isatty v0.0.22/go.mod h1:ZXfXG4SQHsB/w3ZeOYbR0PrPwLy+n6xiMrJ
 github.com/mattn/go-sqlite3 v1.14.22 h1:2gZY6PC6kBnID23Tichd1K+Z0oS6nE/XwU+Vz/5o4kU=
 github.com/mattn/go-sqlite3 v1.14.22/go.mod h1:Uh1q+B4BYcTPb+yiD3kU8Ct7aC0hY9fxUwlHK0RXw+Y=
 github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe/go.mod h1:wL8QJuTMNUDYhXwkmfOly8iTdp5TEcJFWZD2D7SIkUc=
-github.com/nicksnyder/go-i18n/v2 v2.4.1 h1:zwzjtX4uYyiaU02K5Ia3zSkpJZrByARkRB4V3YPrr0g=
-github.com/nicksnyder/go-i18n/v2 v2.4.1/go.mod h1:++Pl70FR6Cki7hdzZRnEEqdc2dJt+SAGotyFg/SvZMk=
+github.com/nicksnyder/go-i18n/v2 v2.6.1 h1:JDEJraFsQE17Dut9HFDHzCoAWGEQJom5s0TRd17NIEQ=
+github.com/nicksnyder/go-i18n/v2 v2.6.1/go.mod h1:Vee0/9RD3Quc/NmwEjzzD7VTZ+Ir7QbXocrkhOzmUKA=
 github.com/orisano/pixelmatch v0.0.0-20220722002657-fb0b55479cde/go.mod h1:nZgzbfBr3hhjoZnS66nKrHmduYNpc34ny7RK4z5/HM0=
 github.com/paulmach/orb v0.11.1 h1:3koVegMC4X/WeiXYz9iswopaTwMem53NzTJuTF20JzU=
 github.com/paulmach/orb v0.11.1/go.mod h1:5mULz1xQfs3bmQm63QEJA6lNGujuRafwA5S/EnuLaLU=
