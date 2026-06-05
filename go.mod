@@ -1,6 +1,6 @@
 module sample
 
-go 1.25.7
+go 1.25.11
 
 require (
 	github.com/gofiber/contrib/v3/fgprof v1.0.6
