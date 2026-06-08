@@ -38,3 +38,67 @@ UsersPaginatedResponse:
             code:
               type: integer
               example: 200
+
+UsersDetailCreateResponse:
+  description: "User List"
+  content:
+    application/json:
+      schema:
+        UsersDetailCreateResponse:
+          type: object
+          properties:
+            result:
+              $ref: "./user_schema.yaml#/UserDetail"
+            error:
+              nullable: true
+              example: null
+            success:
+              type: boolean
+              example: true
+            code:
+              type: integer
+              example: 201
+
+UsersDetailResponse:
+  description: "User Detail"
+  content:
+    application/json:
+      schema:
+        UsersDetailCreateResponse:
+          type: object
+          properties:
+            result:
+              $ref: "./user_schema.yaml#/UserDetail"
+            error:
+              nullable: true
+              example: null
+            success:
+              type: boolean
+              example: true
+            code:
+              type: integer
+              example: 200
+
+UserUpdateResponse:
+  description: Updated
+  content:
+    application/json:
+      schema:
+        $ref: "../base/base_response.yaml#/BaseResponse"
+      example:
+        result: null
+        error: No content
+        success: false
+        code: 204
+
+UserDeleteResponse:
+  description: Updated
+  content:
+    application/json:
+      schema:
+        $ref: "../base/base_response.yaml#/BaseResponse"
+      example:
+        result: null
+        error: No content
+        success: false
+        code: 204

@@ -33,7 +33,7 @@ components:
       bearerFormat: JWT
 
   parameters:
-    $include#base: ./base/base_parameters.yaml
+    $include#base: ./base/base_parameter.yaml
 
   schemas:
-    $include#common: ./user/user_schema.yaml
+    $include#user: ./user/user_schema.yaml
