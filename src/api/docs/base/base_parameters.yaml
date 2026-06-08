@@ -1,0 +1,72 @@
+UrlDetail:
+  name: id
+  description: "Selected Item"
+  in: path
+  required: true
+  schema:
+    type: integer
+    format: uint64
+
+LanguageHeader:
+  name: "Accept-Language"
+  description: "Client Language"
+  in: header
+  required: false
+  schema:
+    type: string
+    enum:
+      - en
+      - fa
+    example: fa
+
+RequestIdHeader:
+  name: "X-Request-ID"
+  description: "Request Identifier"
+  in: header
+  required: false
+  schema:
+    type: string
+
+PagePaginationQuery:
+  name: page
+  description: "Page Number"
+  in: query
+  required: false
+  schema:
+    type: integer
+    default: 20
+
+PageSizePaginationQuery:
+  name: size
+  description: "Size Of Page"
+  in: query
+  required: false
+  schema:
+    type: integer
+    default: 0
+
+FilterPaginationQuery:
+  name: filters
+  description: "Filters"
+  in: query
+  required: false
+  style: form
+  explode: false
+
+  schema:
+    type: array
+    items:
+      type: object
+      properties:
+        field:
+          type: string
+        operator:
+          type: string
+          enum: [eq, like, gt, gte, lt, lte]
+        value:
+          oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+            - type: string
+              format: date-time

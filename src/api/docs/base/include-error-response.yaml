@@ -1,0 +1,10 @@
+"400":
+  $ref: "../base/base_responses.yaml#/400"
+"401":
+  $ref: "../base/base_responses.yaml#/401"
+"403":
+  $ref: "../base/base_responses.yaml#/403"
+"404":
+  $ref: "../base/base_responses.yaml#/404"
+"422":
+  $ref: "../base/base_responses.yaml#/422"

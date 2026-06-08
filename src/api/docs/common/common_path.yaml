@@ -1,0 +1,16 @@
+"/api/v1/common/teapot":
+  get:
+    summary: "Returns a teapot message"
+    description: "Returns localized teapot text based on `lang` query parameter"
+
+    tags:
+      - common
+
+    parameters:
+      $include#base: ../base/include-base-headers.yaml
+
+    responses:
+      $include: ../base/include-error-response.yaml
+
+      "200":
+        $ref: ./common_response.yaml#/TeapotResponse

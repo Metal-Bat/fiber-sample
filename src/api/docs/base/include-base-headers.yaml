@@ -1,0 +1,2 @@
+- $ref: "../base/base_parameters.yaml#/LanguageHeader"
+- $ref: "../base/base_parameters.yaml#/RequestIdHeader"

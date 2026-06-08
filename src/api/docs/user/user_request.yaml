@@ -1,0 +1,58 @@
+LoginPayload:
+  type: object
+  required:
+    - mobile
+    - password
+  properties:
+    mobile:
+      type: string
+      example: "09120000000"
+    password:
+      type: string
+      example: secret
+
+Login:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "#/LoginPayload"
+
+CreateUserPayload:
+  type: object
+  required:
+    - mobile
+    - email
+    - password
+  properties:
+    mobile:
+      type: string
+      example: "09121234567"
+      description: User mobile number (required)
+    email:
+      type: string
+      format: email
+      example: user@example.com
+      description: User email (required)
+    password:
+      type: string
+      format: password
+      description: User password (required)
+    national_code:
+      type: string
+      nullable: true
+      example: "1234567890"
+      description: User national code (optional)
+    birthdate:
+      type: string
+      format: date-time
+      nullable: true
+      example: "1995-01-01T00:00:00Z"
+      description: User birthdate (optional)
+
+CreateUser:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "#/CreateUserPayload"

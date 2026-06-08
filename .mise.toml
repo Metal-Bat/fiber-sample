@@ -4,7 +4,6 @@ pre-commit = "4.6.0"
 golangci-lint = "2.12.2"
 gotestsum = "1.13.0"
 node = "26.1.0"
-"npm:@redocly/cli" = "2.31.6"
 
 [tasks.fmt]
 description = "Format project"
@@ -18,7 +17,7 @@ run = ["golangci-lint run --fix ./..."]
 
 [tasks.bundle-swagger]
 description = "Bundle swagger"
-run = "redocly bundle src/api/docs/openapi.yaml -o src/api/docs/swagger.yaml"
+run = "npx openapi-merger -i src/api/docs/main.yaml -o src/api/docs/openapi.yaml"
 
 
 [tasks.lint]
