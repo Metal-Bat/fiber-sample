@@ -1,0 +1,39 @@
+openapi: 3.1.1
+
+info:
+  title: Sample
+  description: API for Sample application
+  version: "1.0"
+  contact:
+    email: erfan.ehsany@outlook.com
+
+servers:
+  - url: http://127.0.0.1:8000
+  - url: http://localhost:8000
+
+tags:
+  - name: common
+    description: common web services
+
+  - name: user
+    description: user web services
+
+security:
+  - BearerAuth: []
+
+paths:
+  $include#common: ./common/common_path.yaml
+  $include#user: ./user/user_path.yaml
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    $include#base: ./base/base_parameters.yaml
+
+  schemas:
+    $include#common: ./user/user_schema.yaml

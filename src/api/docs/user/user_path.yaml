@@ -1,0 +1,28 @@
+"/api/v1/user/login":
+  post:
+    tags:
+      - user
+
+    parameters:
+      $include: "../base/include-base-headers.yaml"
+
+    requestBody:
+      $ref: "user_request.yaml#/Login"
+
+    responses:
+      $include: "../base/include-error-response.yaml"
+      "200":
+        $ref: "./user_response.yaml#/LoginResponse"
+
+"/api/v1/user":
+  get:
+    tags:
+      - user
+
+    parameters:
+      $include: "../base/include-base-headers.yaml"
+
+    responses:
+      $include: "../base/include-error-response.yaml"
+      "200":
+        $ref: "./user_response.yaml#/UsersPaginatedResponse"

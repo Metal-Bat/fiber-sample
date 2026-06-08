@@ -1,0 +1,6 @@
+TeapotResponse:
+  description: Success
+  content:
+    text/plain:
+      schema:
+        type: string

@@ -399,43 +399,6 @@ components:
         success:
           type: boolean
           example: true
-    LoginResult:
-      type: object
-      properties:
-        user_info:
-          $ref: '#/components/schemas/UserInfo'
-        permissions:
-          type: array
-          items:
-            type: string
-          example:
-            - teapot
-        token:
-          type: string
-          example: some token...
-        expires_at:
-          type: integer
-          format: int64
-          example: 1
-    UserInfo:
-      type: object
-      properties:
-        mobile:
-          type: string
-          example: '09120000000'
-        email:
-          type: string
-          format: email
-          example: example.mail.com
-        national_code:
-          type: string
-          nullable: true
-          example: null
-        birthdate:
-          type: string
-          format: date-time
-          nullable: true
-          example: null
     Users:
       type: object
       properties:

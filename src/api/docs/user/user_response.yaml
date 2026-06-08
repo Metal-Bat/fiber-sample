@@ -1,0 +1,40 @@
+LoginResponse:
+  description: "User Login Response"
+  content:
+    application/json:
+      schema:
+        LoginResponse:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 200
+            error:
+              type: string
+              nullable: true
+              example: null
+            result:
+              $ref: "./user_schema.yaml#/LoginResult"
+            success:
+              type: boolean
+              example: true
+
+UsersPaginatedResponse:
+  description: "User List"
+  content:
+    application/json:
+      schema:
+        UsersPaginatedResponse:
+          type: object
+          properties:
+            result:
+              $ref: "./user_schema.yaml#/Users"
+            error:
+              nullable: true
+              example: null
+            success:
+              type: boolean
+              example: true
+            code:
+              type: integer
+              example: 200

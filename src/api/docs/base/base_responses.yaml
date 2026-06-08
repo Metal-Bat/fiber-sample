@@ -1,0 +1,73 @@
+BaseResponse:
+  type: object
+  properties:
+    result:
+      nullable: true
+    error:
+      nullable: true
+      type: string
+    success:
+      type: boolean
+    code:
+      type: integer
+      format: int32
+
+"400":
+  description: "Bad Request"
+  content:
+    application/json:
+      schema:
+        $ref: "#/BaseResponse"
+      example:
+        result: null
+        error: "Bad request"
+        success: false
+        code: 400
+
+"401":
+  description: "Invalid Or Expired Token"
+  content:
+    application/json:
+      schema:
+        $ref: "#/BaseResponse"
+      example:
+        result: null
+        error: "invalid or expired token"
+        success: false
+        code: 401
+
+"403":
+  description: "Permission Denied"
+  content:
+    application/json:
+      schema:
+        $ref: "#/BaseResponse"
+      example:
+        result: null
+        error: "permission denied"
+        success: false
+        code: 403
+
+"404":
+  description: "Entity Not Found"
+  content:
+    application/json:
+      schema:
+        $ref: "#/BaseResponse"
+      example:
+        result: null
+        error: "entity not found"
+        success: false
+        code: 404
+
+"422":
+  description: "Unprocessable Input"
+  content:
+    application/json:
+      schema:
+        $ref: "#/BaseResponse"
+      example:
+        result: null
+        error: "unprocessable input"
+        success: false
+        code: 422
