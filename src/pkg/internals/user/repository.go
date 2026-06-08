@@ -64,7 +64,7 @@ func (r *repository) GetUsers(
 
 	q := gorm.G[entities.User](r.DB.WithContext(c.Context())).Order("id")
 	q = utils.ApplyFilters(c, q, page)
-	users, err := utils.ApplyLimitsAndOffset(c, q, page).Find(c.Context())
+	users, err := utils.ApplyPagination(c, q, page).Find(c.Context())
 
 	if err != nil {
 		span.RecordError(err)
