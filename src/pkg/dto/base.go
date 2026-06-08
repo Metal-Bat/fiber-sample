@@ -28,6 +28,6 @@ type FilterStructure struct {
 
 type PaginationStructure struct {
 	Filters []FilterStructure `query:"filters"`
-	Limit   int               `query:"limit"`
-	Offset  int               `query:"offset"`
+	Page    int               `query:"page"`
+	Size    int               `query:"size"`
 }

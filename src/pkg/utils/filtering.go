@@ -65,12 +65,16 @@ func ApplyFilters[T any](
 	return q
 }
 
-func ApplyLimitsAndOffset[T any](
+func ApplyPagination[T any](
 	c fiber.Ctx,
 	q gorm.ChainInterface[T],
 	page dto.PaginationStructure,
 ) gorm.ChainInterface[T] {
 	_, span := initializers.Tracer.Start(c.Context(), "utils.ApplyLimits")
 	defer span.End()
-	return q.Offset(page.Offset).Limit(page.Limit)
+
+	pageLimit := page.Size
+	pageOffset := (max(page.Page, 1) - 1) * page.Size
+
+	return q.Offset(pageOffset).Limit(pageLimit)
 }

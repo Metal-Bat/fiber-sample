@@ -210,10 +210,10 @@ func SuccessfulPaginatedResponse[T any](
 	return c.Status(fiber.StatusOK).JSON(
 		fiber.Map{
 			"result": fiber.Map{
-				"limit":  page.Limit,
-				"offset": page.Offset,
-				"count":  count,
-				"items":  items,
+				"page":  page.Page,
+				"size":  page.Size,
+				"count": count,
+				"items": items,
 			},
 			"error":   nil,
 			"success": true,

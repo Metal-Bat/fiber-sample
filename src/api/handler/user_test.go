@@ -80,7 +80,7 @@ func TestGetUsers_Success(t *testing.T) {
 		)
 
 	app.Get("/users", GetUsers(svc))
-	req := httptest.NewRequest("GET", "/users?page=1&limit=10", nil)
+	req := httptest.NewRequest("GET", "/users?page=1&size=10", nil)
 	resp, _ := app.Test(req, fiber.TestConfig{Timeout: 0})
 	body, _ := io.ReadAll(resp.Body)
 	assert.Equal(t, 200, resp.StatusCode)
