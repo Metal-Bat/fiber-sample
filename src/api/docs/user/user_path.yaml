@@ -4,25 +4,98 @@
       - user
 
     parameters:
-      $include: "../base/include-base-headers.yaml"
+      $include: "../base/include_base_headers.yaml"
 
     requestBody:
-      $ref: "user_request.yaml#/Login"
+      $ref: "user_request.yaml#/LoginRequest"
 
     responses:
-      $include: "../base/include-error-response.yaml"
+      $include: "../base/include_error_response.yaml"
       "200":
         $ref: "./user_response.yaml#/LoginResponse"
 
 "/api/v1/user":
   get:
+    summary: Create a new user
+    description: Create a new user with provided data
     tags:
       - user
 
     parameters:
-      $include: "../base/include-base-headers.yaml"
+      $include#Header: "../base/include_base_headers.yaml"
+      $include#Pagination: "../base/include-pagination-query.yaml"
 
     responses:
-      $include: "../base/include-error-response.yaml"
+      $include: "../base/include_error_response.yaml"
       "200":
         $ref: "./user_response.yaml#/UsersPaginatedResponse"
+
+    post:
+      summary: Create a new user
+      description: Create a new user with provided data
+      tags:
+        - user
+
+      parameters:
+        $include#Header: "../base/include_base_headers.yaml"
+
+      requestBody:
+        $ref: "./user_request.yaml#/CreateUserRequest"
+
+      responses:
+        $include: "../base/include_error_response.yaml"
+        "201":
+          $ref: "./user_response.yaml#/UsersDetailCreateResponse"
+
+"/api/v1/user/{id}":
+  get:
+    summary: get user detail
+    description: Returns user detail
+    tags:
+      - user
+
+    parameters:
+      $include#Header: "../base/include_base_headers.yaml"
+      $include#Select: "../base/base_parameter.yaml#/UrlDetail"
+
+    responses:
+      $include: "../base/include_error_response.yaml"
+      "200":
+        $ref: "./user_response.yaml#/UsersDetailResponse"
+
+  put:
+    summary: Update an existing user
+    description: Update user data partially or fully
+
+    tags:
+      - user
+
+    parameters:
+      $include#Header: "../base/include_base_headers.yaml"
+      $include#Select: "../base/base_parameter.yaml#/UrlDetail"
+
+    requestBody:
+      $ref: "./user_request.yaml#/UpdateUserRequest"
+
+    responses:
+      $include: "../base/include_error_response.yaml"
+
+      "204":
+        $ref: "./user_response.yaml#/UserUpdateResponse"
+
+  delete:
+    summary: Delete a user
+    description: Soft-delete a user by ID
+
+    tags:
+      - user
+
+    parameters:
+      $include#Header: "../base/include_base_headers.yaml"
+      $include#Select: "../base/base_parameter.yaml#/UrlDetail"
+
+    responses:
+      $include: "../base/include_error_response.yaml"
+
+      "204":
+        $ref: "./user_response.yaml#/UserDeleteResponse"

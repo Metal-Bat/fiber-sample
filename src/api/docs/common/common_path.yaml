@@ -7,10 +7,10 @@
       - common
 
     parameters:
-      $include#base: ../base/include-base-headers.yaml
+      $include#base: ../base/include_base_headers.yaml
 
     responses:
-      $include: ../base/include-error-response.yaml
+      $include: ../base/include_error_response.yaml
 
       "200":
         $ref: ./common_response.yaml#/TeapotResponse
