@@ -4,5 +4,23 @@
     "invalid user or password": "کاربری یا رمز عبور صحیح نمی باشد",
     "permission denied": "خطای سطح دسترسی",
     "entity not found": "یافت نشد",
-    "unprocessable input": "ورودی قابل بررسی نمی باشد"
+    "unprocessable input": "ورودی قابل بررسی نمی باشد",
+
+    "db_error_unique_violation": "رکوردی با این مقدار از قبل وجود دارد",
+    "db_error_foreign_key_violation": "رکورد مرجع یافت نشد",
+    "db_error_not_null_violation": "یک فیلد اجباری خالی است",
+    "db_error_check_violation": "مقدار فیلد شرط اعتبارسنجی را برآورده نمی‌کند",
+    "db_error_constraint_violation": "عملیات با یک محدودیت داده‌ای تداخل دارد",
+    "db_error_value_too_long": "مقدار فیلد از حداکثر طول مجاز بیشتر است",
+    "db_error_value_out_of_range": "مقدار فیلد خارج از محدوده مجاز است",
+    "db_error_invalid_datetime": "مقدار تاریخ یا زمان نامعتبر است",
+    "db_error_zero_division": "یک محاسبه منجر به تقسیم بر صفر شد",
+    "db_error_serialization_failure": "عملیات به دلیل تداخل همزمان انجام نشد، لطفاً دوباره تلاش کنید",
+    "db_error_deadlock": "بن‌بست شناسایی شد، لطفاً دوباره تلاش کنید",
+    "db_error_insufficient_privilege": "کاربر پایگاه داده دسترسی لازم را ندارد",
+    "db_error_insufficient_resources": "منابع کافی در سرور پایگاه داده وجود ندارد",
+    "db_error_too_many_connections": "پایگاه داده به حداکثر تعداد اتصالات رسیده است",
+    "db_error_query_canceled": "درخواست به دلیل وقفه زمانی لغو شد",
+    "db_error_connection": "اتصال به پایگاه داده امکان‌پذیر نیست",
+    "db_error_internal": "خطای داخلی پایگاه داده رخ داده است"
 }

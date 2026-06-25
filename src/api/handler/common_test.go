@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"context"
 	"errors"
 	"io"
 	"net/http/httptest"
@@ -15,7 +16,7 @@ type mockCommonService struct {
 	mock.Mock
 }
 
-func (m *mockCommonService) Teapot(c fiber.Ctx) (string, error) {
+func (m *mockCommonService) Teapot(ctx context.Context) (string, error) {
 	args := m.Called()
 	return args.String(0), args.Error(1)
 }
@@ -40,7 +41,6 @@ func TestGetTeapot_Success(t *testing.T) {
 
 	body, _ := io.ReadAll(resp.Body)
 	assert.Contains(t, string(body), "ok teapot")
-
 }
 
 func TestGetTeapot_Error(t *testing.T) {

@@ -1,22 +1,62 @@
 package mapper
 
 import (
-	"sample/src/initializers"
+	"database/sql"
+	"time"
 
-	"github.com/gofiber/fiber/v3"
+	"gorm.io/gorm"
+
+	"sample/src/pkg/entities"
 )
 
-func MapSlice[A any, B any](
-	c fiber.Ctx,
-	in []*A,
-	fn func(fiber.Ctx, *A) *B,
-) []*B {
-	_, span := initializers.Tracer.Start(c.Context(), "base.MapSlice")
-	defer span.End()
+func TimeToTime(t time.Time) time.Time { return t }
 
-	out := make([]*B, len(in))
-	for i, v := range in {
-		out[i] = fn(c, v)
+func NullStringToPtr(s sql.NullString) *string {
+	if !s.Valid {
+		return nil
 	}
-	return out
+	return &s.String
+}
+
+func PtrToNullString(s *string) sql.NullString {
+	if s == nil {
+		return sql.NullString{}
+	}
+	return sql.NullString{String: *s, Valid: true}
+}
+
+func NullTimeToPtr(t sql.NullTime) *time.Time {
+	if !t.Valid {
+		return nil
+	}
+	return &t.Time
+}
+
+func PtrToNullTime(t *time.Time) sql.NullTime {
+	if t == nil {
+		return sql.NullTime{}
+	}
+	return sql.NullTime{Time: *t, Valid: true}
+}
+
+func GormDeletedAtToPtr(t gorm.DeletedAt) *time.Time {
+	if !t.Valid {
+		return nil
+	}
+	return &t.Time
+}
+
+func PermissionsToNames(perms []entities.Permission) []string {
+	names := make([]string, len(perms))
+	for i, p := range perms {
+		names[i] = p.Name
+	}
+	return names
+}
+
+func PtrToString(s *string) string {
+	if s == nil {
+		return ""
+	}
+	return *s
 }

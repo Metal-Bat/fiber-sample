@@ -4,9 +4,25 @@ import (
 	"sample/src/initializers"
 	"sample/src/pkg/dto"
 	"sample/src/pkg/utils"
+	"sample/src/pkg/utils/customErrors"
 
 	"github.com/gofiber/fiber/v3"
 )
+
+func ReturnInternalError(c fiber.Ctx, Err *customErrors.InternalError) error {
+	_, span := initializers.Tracer.Start(c.Context(), "presenter.ReturnInternalError")
+	defer span.End()
+
+	msg, _ := utils.TranslateMessage(c, Err.MessageKey)
+	return c.Status(Err.HTTPStatus).JSON(
+		fiber.Map{
+			"result":  nil,
+			"error":   msg,
+			"success": false,
+			"code":    Err.HTTPStatus,
+		},
+	)
+}
 
 func ReturnSimpleSuccess(c fiber.Ctx) error {
 	_, span := initializers.Tracer.Start(c.Context(), "presenter.ReturnSimpleSuccess")

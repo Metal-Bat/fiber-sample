@@ -62,8 +62,8 @@ paths:
           $ref: '#/components/responses/422'
   /api/v1/user:
     get:
-      summary: Create a new user
-      description: Create a new user with provided data
+      summary: List users
+      description: Returns a paginated list of users
       tags:
         - user
       parameters:
@@ -85,29 +85,29 @@ paths:
           $ref: '#/components/responses/404'
         '422':
           $ref: '#/components/responses/422'
-      post:
-        summary: Create a new user
-        description: Create a new user with provided data
-        tags:
-          - user
-        parameters:
-          - $ref: '#/components/parameters/LanguageHeader'
-          - $ref: '#/components/parameters/RequestIdHeader'
-        requestBody:
-          $ref: '#/components/requestBodies/CreateUserRequest'
-        responses:
-          '201':
-            $ref: '#/components/responses/UsersDetailCreateResponse'
-          '400':
-            $ref: '#/components/responses/400'
-          '401':
-            $ref: '#/components/responses/401'
-          '403':
-            $ref: '#/components/responses/403'
-          '404':
-            $ref: '#/components/responses/404'
-          '422':
-            $ref: '#/components/responses/422'
+    post:
+      summary: Create a new user
+      description: Create a new user with provided data
+      tags:
+        - user
+      parameters:
+        - $ref: '#/components/parameters/LanguageHeader'
+        - $ref: '#/components/parameters/RequestIdHeader'
+      requestBody:
+        $ref: '#/components/requestBodies/CreateUserRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/UsersDetailCreateResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
   /api/v1/user/{id}:
     get:
       summary: get user detail
@@ -271,29 +271,27 @@ components:
       properties:
         user_info:
           $ref: '#/components/schemas/UserInfo'
-        permissions:
-          type: array
-          items:
-            type: string
-          example:
-            - teapot
         token:
           type: string
           example: some token...
         expires_at:
           type: integer
           format: int64
-          example: 1
+          example: 1735689600
     UserInfo:
       type: object
       properties:
+        id:
+          type: integer
+          format: uint64
+          example: 1
         mobile:
           type: string
           example: '09120000000'
         email:
           type: string
           format: email
-          example: example.mail.com
+          example: user@example.com
         national_code:
           type: string
           nullable: true
@@ -303,6 +301,12 @@ components:
           format: date-time
           nullable: true
           example: null
+        permissions:
+          type: array
+          items:
+            type: string
+          example:
+            - admin
     Users:
       type: object
       properties:
@@ -508,21 +512,20 @@ components:
       content:
         application/json:
           schema:
-            LoginResponse:
-              type: object
-              properties:
-                code:
-                  type: integer
-                  example: 200
-                error:
-                  type: string
-                  nullable: true
-                  example: null
-                result:
-                  $ref: '#/components/schemas/LoginResult'
-                success:
-                  type: boolean
-                  example: true
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              error:
+                type: string
+                nullable: true
+                example: null
+              success:
+                type: boolean
+                example: true
+              result:
+                $ref: '#/components/schemas/LoginResult'
     TeapotResponse:
       description: Success
       content:
@@ -530,81 +533,99 @@ components:
           schema:
             type: string
     UserDeleteResponse:
-      description: Updated
+      description: Deleted
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/BaseResponse'
-          example:
-            result: null
-            error: No content
-            success: false
-            code: 204
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 204
+              error:
+                type: string
+                nullable: true
+                example: null
+              success:
+                type: boolean
+                example: true
+              result:
+                nullable: true
+                example: null
     UserUpdateResponse:
       description: Updated
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/BaseResponse'
-          example:
-            result: null
-            error: No content
-            success: false
-            code: 204
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 204
+              error:
+                type: string
+                nullable: true
+                example: null
+              success:
+                type: boolean
+                example: true
+              result:
+                nullable: true
+                example: null
     UsersDetailCreateResponse:
-      description: User List
+      description: User Created
       content:
         application/json:
           schema:
-            UsersDetailCreateResponse:
-              type: object
-              properties:
-                result:
-                  $ref: '#/components/schemas/UserDetail'
-                error:
-                  nullable: true
-                  example: null
-                success:
-                  type: boolean
-                  example: true
-                code:
-                  type: integer
-                  example: 201
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 201
+              error:
+                type: string
+                nullable: true
+                example: null
+              success:
+                type: boolean
+                example: true
+              result:
+                $ref: '#/components/schemas/UserDetail'
     UsersDetailResponse:
       description: User Detail
       content:
         application/json:
           schema:
-            UsersDetailCreateResponse:
-              type: object
-              properties:
-                result:
-                  $ref: '#/components/schemas/UserDetail'
-                error:
-                  nullable: true
-                  example: null
-                success:
-                  type: boolean
-                  example: true
-                code:
-                  type: integer
-                  example: 200
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              error:
+                type: string
+                nullable: true
+                example: null
+              success:
+                type: boolean
+                example: true
+              result:
+                $ref: '#/components/schemas/UserDetail'
     UsersPaginatedResponse:
       description: User List
       content:
         application/json:
           schema:
-            UsersPaginatedResponse:
-              type: object
-              properties:
-                result:
-                  $ref: '#/components/schemas/Users'
-                error:
-                  nullable: true
-                  example: null
-                success:
-                  type: boolean
-                  example: true
-                code:
-                  type: integer
-                  example: 200
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              error:
+                type: string
+                nullable: true
+                example: null
+              success:
+                type: boolean
+                example: true
+              result:
+                $ref: '#/components/schemas/Users'

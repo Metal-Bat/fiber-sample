@@ -16,30 +16,28 @@ LoginResult:
   properties:
     user_info:
       $ref: "#/UserInfo"
-    permissions:
-      type: array
-      items:
-        type: string
-      example:
-        - teapot
     token:
       type: string
       example: some token...
     expires_at:
       type: integer
       format: int64
-      example: 1
+      example: 1735689600
 
 UserInfo:
   type: object
   properties:
+    id:
+      type: integer
+      format: uint64
+      example: 1
     mobile:
       type: string
       example: "09120000000"
     email:
       type: string
       format: email
-      example: example.mail.com
+      example: user@example.com
     national_code:
       type: string
       nullable: true
@@ -49,6 +47,12 @@ UserInfo:
       format: date-time
       nullable: true
       example: null
+    permissions:
+      type: array
+      items:
+        type: string
+      example:
+        - admin
 
 Users:
   type: object

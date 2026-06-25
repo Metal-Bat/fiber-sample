@@ -4,5 +4,23 @@
     "invalid user or password": "invalid user or password",
     "permission denied": "permission denied",
     "entity not found": "entity not found",
-    "unprocessable input": "unprocessable input"
+    "unprocessable input": "unprocessable input",
+
+    "db_error_unique_violation": "a record with this value already exists",
+    "db_error_foreign_key_violation": "the referenced record does not exist",
+    "db_error_not_null_violation": "a required field is missing",
+    "db_error_check_violation": "a field value did not pass validation rules",
+    "db_error_constraint_violation": "the operation violates a data constraint",
+    "db_error_value_too_long": "a field value exceeds the maximum allowed length",
+    "db_error_value_out_of_range": "a field value is out of the allowed range",
+    "db_error_invalid_datetime": "a date or time value is invalid",
+    "db_error_zero_division": "a calculation resulted in division by zero",
+    "db_error_serialization_failure": "the operation could not complete due to a concurrent conflict, please retry",
+    "db_error_deadlock": "a deadlock was detected, please retry the operation",
+    "db_error_insufficient_privilege": "the database user lacks the required privileges",
+    "db_error_insufficient_resources": "the database server has insufficient resources",
+    "db_error_too_many_connections": "the database has reached its maximum connection limit",
+    "db_error_query_canceled": "the query was canceled due to a timeout",
+    "db_error_connection": "unable to connect to the database",
+    "db_error_internal": "an internal database error occurred"
 }

@@ -13,8 +13,7 @@ func GetTeapot(service common.Service) fiber.Handler {
 		_, span := initializers.Tracer.Start(c.Context(), "handler.GetTeapot")
 		defer span.End()
 
-		text, err := service.Teapot(c)
-
+		text, err := service.Teapot(c.Context())
 		if err != nil {
 			span.RecordError(err)
 		}

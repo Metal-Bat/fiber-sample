@@ -1,13 +1,12 @@
 package common
 
 import (
+	"context"
 	"sample/src/initializers"
-
-	"github.com/gofiber/fiber/v3"
 )
 
 type Service interface {
-	Teapot(c fiber.Ctx) (string, error)
+	Teapot(ctx context.Context) (string, error)
 }
 
 type service struct {
@@ -20,9 +19,9 @@ func NewCommonService(r CommonRepository) Service {
 	}
 }
 
-func (s *service) Teapot(c fiber.Ctx) (string, error) {
-	_, span := initializers.Tracer.Start(c.Context(), "service.Teapot")
+func (s *service) Teapot(ctx context.Context) (string, error) {
+	_, span := initializers.Tracer.Start(ctx, "service.Teapot")
 	defer span.End()
 
-	return s.repository.Teapot(c)
+	return s.repository.Teapot(ctx)
 }

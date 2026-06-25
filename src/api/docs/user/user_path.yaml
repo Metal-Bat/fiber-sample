@@ -16,8 +16,8 @@
 
 "/api/v1/user":
   get:
-    summary: Create a new user
-    description: Create a new user with provided data
+    summary: List users
+    description: Returns a paginated list of users
     tags:
       - user
 
@@ -30,22 +30,22 @@
       "200":
         $ref: "./user_response.yaml#/UsersPaginatedResponse"
 
-    post:
-      summary: Create a new user
-      description: Create a new user with provided data
-      tags:
-        - user
+  post:
+    summary: Create a new user
+    description: Create a new user with provided data
+    tags:
+      - user
 
-      parameters:
-        $include#Header: "../base/include_base_headers.yaml"
+    parameters:
+      $include#Header: "../base/include_base_headers.yaml"
 
-      requestBody:
-        $ref: "./user_request.yaml#/CreateUserRequest"
+    requestBody:
+      $ref: "./user_request.yaml#/CreateUserRequest"
 
-      responses:
-        $include: "../base/include_error_response.yaml"
-        "201":
-          $ref: "./user_response.yaml#/UsersDetailCreateResponse"
+    responses:
+      $include: "../base/include_error_response.yaml"
+      "201":
+        $ref: "./user_response.yaml#/UsersDetailCreateResponse"
 
 "/api/v1/user/{id}":
   get:

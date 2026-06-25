@@ -1,24 +1,22 @@
 package common
 
 import (
+	"context"
 	"sample/src/initializers"
-
-	"github.com/gofiber/fiber/v3"
 )
 
 type CommonRepository interface {
-	Teapot(c fiber.Ctx) (string, error)
+	Teapot(ctx context.Context) (string, error)
 }
 
-type repository struct {
-}
+type repository struct{}
 
 func NewCommonRepository() CommonRepository {
 	return &repository{}
 }
 
-func (r *repository) Teapot(c fiber.Ctx) (string, error) {
-	_, span := initializers.Tracer.Start(c.Context(), "repository.Teapot")
+func (r *repository) Teapot(ctx context.Context) (string, error) {
+	_, span := initializers.Tracer.Start(ctx, "repository.Teapot")
 	defer span.End()
 
 	return "i am a teapot", nil

@@ -3,102 +3,119 @@ LoginResponse:
   content:
     application/json:
       schema:
-        LoginResponse:
-          type: object
-          properties:
-            code:
-              type: integer
-              example: 200
-            error:
-              type: string
-              nullable: true
-              example: null
-            result:
-              $ref: "./user_schema.yaml#/LoginResult"
-            success:
-              type: boolean
-              example: true
+        type: object
+        properties:
+          code:
+            type: integer
+            example: 200
+          error:
+            type: string
+            nullable: true
+            example: null
+          success:
+            type: boolean
+            example: true
+          result:
+            $ref: "./user_schema.yaml#/LoginResult"
 
 UsersPaginatedResponse:
   description: "User List"
   content:
     application/json:
       schema:
-        UsersPaginatedResponse:
-          type: object
-          properties:
-            result:
-              $ref: "./user_schema.yaml#/Users"
-            error:
-              nullable: true
-              example: null
-            success:
-              type: boolean
-              example: true
-            code:
-              type: integer
-              example: 200
+        type: object
+        properties:
+          code:
+            type: integer
+            example: 200
+          error:
+            type: string
+            nullable: true
+            example: null
+          success:
+            type: boolean
+            example: true
+          result:
+            $ref: "./user_schema.yaml#/Users"
 
 UsersDetailCreateResponse:
-  description: "User List"
+  description: "User Created"
   content:
     application/json:
       schema:
-        UsersDetailCreateResponse:
-          type: object
-          properties:
-            result:
-              $ref: "./user_schema.yaml#/UserDetail"
-            error:
-              nullable: true
-              example: null
-            success:
-              type: boolean
-              example: true
-            code:
-              type: integer
-              example: 201
+        type: object
+        properties:
+          code:
+            type: integer
+            example: 201
+          error:
+            type: string
+            nullable: true
+            example: null
+          success:
+            type: boolean
+            example: true
+          result:
+            $ref: "./user_schema.yaml#/UserDetail"
 
 UsersDetailResponse:
   description: "User Detail"
   content:
     application/json:
       schema:
-        UsersDetailCreateResponse:
-          type: object
-          properties:
-            result:
-              $ref: "./user_schema.yaml#/UserDetail"
-            error:
-              nullable: true
-              example: null
-            success:
-              type: boolean
-              example: true
-            code:
-              type: integer
-              example: 200
+        type: object
+        properties:
+          code:
+            type: integer
+            example: 200
+          error:
+            type: string
+            nullable: true
+            example: null
+          success:
+            type: boolean
+            example: true
+          result:
+            $ref: "./user_schema.yaml#/UserDetail"
 
 UserUpdateResponse:
-  description: Updated
+  description: "Updated"
   content:
     application/json:
       schema:
-        $ref: "../base/base_response.yaml#/BaseResponse"
-      example:
-        result: null
-        error: No content
-        success: false
-        code: 204
+        type: object
+        properties:
+          code:
+            type: integer
+            example: 204
+          error:
+            type: string
+            nullable: true
+            example: null
+          success:
+            type: boolean
+            example: true
+          result:
+            nullable: true
+            example: null
 
 UserDeleteResponse:
-  description: Updated
+  description: "Deleted"
   content:
     application/json:
       schema:
-        $ref: "../base/base_response.yaml#/BaseResponse"
-      example:
-        result: null
-        error: No content
-        success: false
-        code: 204
+        type: object
+        properties:
+          code:
+            type: integer
+            example: 204
+          error:
+            type: string
+            nullable: true
+            example: null
+          success:
+            type: boolean
+            example: true
+          result:
+            nullable: true
+            example: null

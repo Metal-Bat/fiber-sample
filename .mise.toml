@@ -19,7 +19,6 @@ run = ["golangci-lint run --fix ./..."]
 description = "Bundle swagger"
 run = "npx openapi-merger -i src/api/docs/main.yaml -o src/api/docs/openapi.yaml"
 
-
 [tasks.lint]
 description = "Run linters"
 dir = "src"
@@ -60,6 +59,11 @@ depends = ["fmt", "vet", "lint", "test"]
 [tasks.complete-check]
 description = "Complete Checks"
 depends = ["fmt", "vet", "lint", "test-race", "coverage"]
+
+[tasks.generate]
+description = "Run code generation (goverter mappers)"
+dir = "src"
+run = ["go generate ./..."]
 
 [tasks.deps]
 description = "Update dependencies"
