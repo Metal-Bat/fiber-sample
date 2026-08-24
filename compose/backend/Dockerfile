@@ -1,4 +1,4 @@
-FROM golang:1.25.11-bookworm
+FROM golang:1.25.14-bookworm
 
 ARG APP_HOME=/app
 ARG APP_USER=app
